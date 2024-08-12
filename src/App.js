@@ -1,23 +1,52 @@
-import logo from './logo.svg';
+import {useEffect, useState } from 'react';
+import { getBannerDeatils } from './api/bannerAPI';
 import './App.css';
+import Banner from './Components/Banner';
+import { RouterProvider,createBrowserRouter } from 'react-router-dom';
+import Dashboard from './Components/Dashboard';
+
+
+
 
 function App() {
+  const [bannerDetails, setBannerDetails] = useState({});
+
+  const loadBannerData = async () => {
+    const data = await getBannerDeatils();
+    if(data.id){
+      setBannerDetails(await getBannerDeatils());
+    }
+  };
+
+  useEffect(() => {
+    loadBannerData();
+  }, []);
+
+  console.log(bannerDetails);
+ 
+
+  const BrowserRouter = createBrowserRouter([
+    {
+      path: '/',
+      element: 
+      <>
+      {
+      bannerDetails.id&&
+      <Banner bannerDetails={bannerDetails}/>
+      }
+      </>
+      ,
+    },
+    {
+      path: '/dashboard',
+      element: <Dashboard bannerDetails={bannerDetails}/>
+    }
+  ]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    
+    <div className="App relative h-screen w-full p-8">
+      <RouterProvider router={BrowserRouter} />
     </div>
   );
 }
