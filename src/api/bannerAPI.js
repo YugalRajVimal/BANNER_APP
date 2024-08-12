@@ -1,5 +1,5 @@
-const getBannerURL ='http://localhost:8080/bannerDetails';
-const updateBannerURL = 'http://localhost:8080/updateBannerDetails';
+const getBannerURL ='https://banner-app-api.onrender.com/bannerDetails';
+const updateBannerURL = 'https://banner-app-api.onrender.com/updateBannerDetails';
 
 const getBannerDeatils = async () => {
     try {

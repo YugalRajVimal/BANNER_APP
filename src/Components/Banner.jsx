@@ -73,7 +73,7 @@ const Banner = (props) => {
       </div>
       <div className="absolute right-[10%] bottom-[10%]">
         <button className="px-4 py-1 text-2xl  bg-zinc-700 rounded-md">
-          <Link to="/Dashboard" >Go to Dashboard</Link>   
+          <Link to="/Dashboard">Go to Dashboard</Link>
         </button>
       </div>
     </>
